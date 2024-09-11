@@ -23,8 +23,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:backgroundTint="#A08E8E"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="@dimen/dim_25"
+        android:layout_marginBottom="@dimen/dim_20"
         android:contentDescription="Add new contact"
         app:fabSize="normal"
         app:srcCompat="@android:drawable/ic_input_add" />
