@@ -1,6 +1,9 @@
 package com.hwm.recyclerview
 
+import android.app.Dialog
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -8,11 +11,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     private lateinit var contactList :MutableList<contactModal>
     private lateinit var recyclerView : RecyclerView
     private lateinit var adapter: RecyclerContactAdapter
+    private lateinit var fabAction: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,8 +30,9 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.rvContactUs)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        fabAction = findViewById(R.id.fabAction)
 
-        val contactList = mutableListOf(
+        contactList = mutableListOf(
             contactModal(R.drawable.employee, "Haroon Waheed", "03001234567"),
             contactModal(R.drawable.female, "Ayesha Khan", "03011234567"),
             contactModal(R.drawable.employee, "Bilal Ahmed", "03021234567"),
@@ -76,303 +82,40 @@ class MainActivity : AppCompatActivity() {
             contactModal(R.drawable.employee, "Tariq Aziz", "03461234567"),
             contactModal(R.drawable.employee, "Umair Ahmed", "03471234567"),
             contactModal(R.drawable.female, "Veena Qureshi", "03481234567"),
-            contactModal(R.drawable.female, "Warda Nisar", "03491234567"),
-            contactModal(R.drawable.employee, "Xander Gomes", "03501234567"),
-            contactModal(R.drawable.employee, "Yousaf Jameel", "03511234567"),
-            contactModal(R.drawable.female, "Zeenat Ali", "03521234567"),
-            contactModal(R.drawable.female, "Aisha Mirza", "03531234567"),
-            contactModal(R.drawable.employee, "Bilal Javed", "03541234567"),
-            contactModal(R.drawable.employee, "Chirag Patel", "03551234567"),
-            contactModal(R.drawable.female, "Dua Khan", "03561234567"),
-            contactModal(R.drawable.female, "Elina Shah", "03571234567"),
-            contactModal(R.drawable.employee, "Farhan Malik", "03581234567"),
-            contactModal(R.drawable.employee, "Ghulam Rasool", "03591234567"),
-            contactModal(R.drawable.female, "Hira Ahmed", "03601234567"),
-            contactModal(R.drawable.female, "Iqra Hussain", "03611234567"),
-            contactModal(R.drawable.employee, "Javed Iqbal", "03621234567"),
-            contactModal(R.drawable.employee, "Kamran Ali", "03631234567"),
-            contactModal(R.drawable.female, "Laila Ameen", "03641234567"),
-            contactModal(R.drawable.female, "Maira Shah", "03651234567"),
-            contactModal(R.drawable.employee, "Naveed Raza", "03661234567"),
-            contactModal(R.drawable.employee, "Omer Farooq", "03671234567"),
-            contactModal(R.drawable.female, "Pinky Bibi", "03681234567"),
-            contactModal(R.drawable.female, "Quratulain Bibi", "03691234567"),
-            contactModal(R.drawable.employee, "Rizwan Aslam", "03701234567"),
-            contactModal(R.drawable.employee, "Saqib Javed", "03711234567"),
-            contactModal(R.drawable.female, "Tariqa Jamil", "03721234567"),
-            contactModal(R.drawable.female, "Uzma Shaukat", "03731234567"),
-            contactModal(R.drawable.employee, "Vijay Kumar", "03741234567"),
-            contactModal(R.drawable.employee, "Wasiq Ali", "03751234567"),
-            contactModal(R.drawable.female, "Ximena Garcia", "03761234567"),
-            contactModal(R.drawable.female, "Yasmeen Bibi", "03771234567"),
-            contactModal(R.drawable.employee, "Zubair Ahmed", "03781234567"),
-            contactModal(R.drawable.employee, "Adeel Ahmed", "03791234567"),
-            contactModal(R.drawable.female, "Bisma Zafar", "03801234567"),
-            contactModal(R.drawable.female, "Cynthia Malik", "03811234567"),
-            contactModal(R.drawable.employee, "Danish Iqbal", "03821234567"),
-            contactModal(R.drawable.employee, "Ehsan Khan", "03831234567"),
-            contactModal(R.drawable.female, "Fariha Qureshi", "03841234567"),
-            contactModal(R.drawable.female, "Gulzar Bibi", "03851234567"),
-            contactModal(R.drawable.employee, "Hassan Ali", "03861234567"),
-            contactModal(R.drawable.employee, "Iqbal Khan", "03871234567"),
-            contactModal(R.drawable.female, "Javeria Bibi", "03881234567"),
-            contactModal(R.drawable.female, "Kiran Sheikh", "03891234567"),
-            contactModal(R.drawable.employee, "Luqman Raza", "03901234567"),
-            contactModal(R.drawable.employee, "Mohsin Ali", "03911234567"),
-            contactModal(R.drawable.female, "Noreen Shah", "03921234567"),
-            contactModal(R.drawable.female, "Omaima Khan", "03931234567"),
-            contactModal(R.drawable.employee, "Pervaiz Ahmed", "03941234567"),
-            contactModal(R.drawable.employee, "Qasim Ali", "03951234567"),
-            contactModal(R.drawable.female, "Rabia Khan", "03961234567"),
-            contactModal(R.drawable.female, "Sadia Nisar", "03971234567"),
-            contactModal(R.drawable.employee, "Tariq Javed", "03981234567"),
-            contactModal(R.drawable.employee, "Umair Ali", "03991234567"),
-            contactModal(R.drawable.female, "Vijaya Kumar", "04001234567"),
-            contactModal(R.drawable.female, "Warda Ali", "04011234567"),
-            contactModal(R.drawable.employee, "Xander Khan", "04021234567"),
-            contactModal(R.drawable.employee, "Yasir Bibi", "04031234567"),
-            contactModal(R.drawable.female, "Zehra Ahmed", "04041234567"),
-            contactModal(R.drawable.female, "Aisha Shah", "04051234567"),
-            contactModal(R.drawable.employee, "Bilal Arshad", "04061234567"),
-            contactModal(R.drawable.employee, "Chaudhry Tariq", "04071234567"),
-            contactModal(R.drawable.female, "Dania Zafar", "04081234567"),
-            contactModal(R.drawable.female, "Eman Raza", "04091234567"),
-            contactModal(R.drawable.employee, "Faisal Iqbal", "04101234567"),
-            contactModal(R.drawable.employee, "Ghulam Raza", "04111234567"),
-            contactModal(R.drawable.female, "Hina Batool", "04121234567"),
-            contactModal(R.drawable.female, "Iram Rafiq", "04131234567"),
-            contactModal(R.drawable.employee, "Junaid Farooq", "04141234567"),
-            contactModal(R.drawable.employee, "Kamran Ahmed", "04151234567"),
-            contactModal(R.drawable.employee, "Luqman Shah", "04161234567"),
-            contactModal(R.drawable.female, "Maira Bibi", "04171234567"),
-            contactModal(R.drawable.female, "Nazia Fatima", "04181234567"),
-            contactModal(R.drawable.employee, "Omar Iqbal", "04191234567"),
-            contactModal(R.drawable.female, "Parveen Javed", "04201234567"),
-            contactModal(R.drawable.employee, "Qasim Raza", "04211234567"),
-            contactModal(R.drawable.female, "Rabia Iqbal", "04221234567"),
-            contactModal(R.drawable.female, "Sana Tariq", "04231234567"),
-            contactModal(R.drawable.employee, "Tariq Ahmed", "04241234567"),
-            contactModal(R.drawable.employee, "Umair Raza", "04251234567"),
-            contactModal(R.drawable.female, "Veena Fatima", "04261234567"),
-            contactModal(R.drawable.female, "Warda Malik", "04271234567"),
-            contactModal(R.drawable.employee, "Xander Shah", "04281234567"),
-            contactModal(R.drawable.employee, "Yousaf Ahmed", "04291234567"),
-            contactModal(R.drawable.female, "Zeenat Bibi", "04301234567"),
-            contactModal(R.drawable.female, "Aisha Khan", "04311234567"),
-            contactModal(R.drawable.employee, "Bilal Ali", "04321234567"),
-            contactModal(R.drawable.employee, "Chaudhry Ahmed", "04331234567"),
-            contactModal(R.drawable.female, "Dania Khan", "04341234567"),
-            contactModal(R.drawable.female, "Eman Fatima", "04351234567"),
-            contactModal(R.drawable.employee, "Faisal Raza", "04361234567"),
-            contactModal(R.drawable.employee, "Ghulam Ahmed", "04371234567"),
-            contactModal(R.drawable.female, "Hina Ali", "04381234567"),
-            contactModal(R.drawable.female, "Iram Javed", "04391234567"),
-            contactModal(R.drawable.employee, "Junaid Shah", "04401234567"),
-            contactModal(R.drawable.employee, "Kamran Raza", "04411234567"),
-            contactModal(R.drawable.employee, "Luqman Khan", "04421234567"),
-            contactModal(R.drawable.female, "Maira Fatima", "04431234567"),
-            contactModal(R.drawable.female, "Nazia Malik", "04441234567"),
-            contactModal(R.drawable.employee, "Omar Shah", "04451234567"),
-            contactModal(R.drawable.female, "Parveen Raza", "04461234567"),
-            contactModal(R.drawable.employee, "Qasim Tariq", "04471234567"),
-            contactModal(R.drawable.female, "Rabia Javed", "04481234567"),
-            contactModal(R.drawable.female, "Sana Fatima", "04491234567"),
-            contactModal(R.drawable.employee, "Tariq Malik", "04501234567"),
-            contactModal(R.drawable.employee, "Umair Tariq", "04511234567"),
-            contactModal(R.drawable.female, "Veena Javed", "04521234567"),
-            contactModal(R.drawable.female, "Warda Khan", "04531234567"),
-            contactModal(R.drawable.employee, "Xander Ali", "04541234567"),
-            contactModal(R.drawable.employee, "Yousaf Tariq", "04551234567"),
-            contactModal(R.drawable.female, "Zeenat Khan", "04561234567"),
-            contactModal(R.drawable.female, "Aisha Ahmed", "04571234567"),
-            contactModal(R.drawable.employee, "Bilal Shah", "04581234567"),
-            contactModal(R.drawable.employee, "Chaudhry Raza", "04591234567"),
-            contactModal(R.drawable.female, "Dania Iqbal", "04601234567"),
-            contactModal(R.drawable.female, "Eman Bibi", "04611234567"),
-            contactModal(R.drawable.employee, "Faisal Ahmed", "04621234567"),
-            contactModal(R.drawable.employee, "Ghulam Farooq", "04631234567"),
-            contactModal(R.drawable.female, "Hina Fatima", "04641234567"),
-            contactModal(R.drawable.female, "Iram Khan", "04651234567"),
-            contactModal(R.drawable.employee, "Junaid Tariq", "04661234567"),
-            contactModal(R.drawable.employee, "Kamran Bibi", "04671234567"),
-            contactModal(R.drawable.employee, "Luqman Malik", "04681234567"),
-            contactModal(R.drawable.female, "Maira Raza", "04691234567"),
-            contactModal(R.drawable.female, "Nazia Javed", "04701234567"),
-            contactModal(R.drawable.employee, "Omar Ali", "04711234567"),
-            contactModal(R.drawable.female, "Parveen Malik", "04721234567"),
-            contactModal(R.drawable.employee, "Qasim Ali", "04731234567"),
-            contactModal(R.drawable.female, "Rabia Shah", "04741234567"),
-            contactModal(R.drawable.female, "Sana Bibi", "04751234567"),
-            contactModal(R.drawable.employee, "Tariq Javed", "04761234567"),
-            contactModal(R.drawable.employee, "Umair Iqbal", "04771234567"),
-            contactModal(R.drawable.female, "Veena Tariq", "04781234567"),
-            contactModal(R.drawable.female, "Warda Raza", "04791234567"),
-            contactModal(R.drawable.employee, "Xander Raza", "04801234567"),
-            contactModal(R.drawable.employee, "Yousaf Ahmed", "04811234567"),
-            contactModal(R.drawable.female, "Zeenat Ali", "04821234567"),
-            contactModal(R.drawable.female, "Aisha Malik", "04831234567"),
-            contactModal(R.drawable.employee, "Bilal Ahmed", "04841234567"),
-            contactModal(R.drawable.employee, "Chaudhry Farooq", "04851234567"),
-            contactModal(R.drawable.female, "Dania Malik", "04861234567"),
-            contactModal(R.drawable.female, "Eman Ali", "04871234567"),
-            contactModal(R.drawable.employee, "Faisal Khan", "04881234567"),
-            contactModal(R.drawable.employee, "Ghulam Ali", "04891234567"),
-            contactModal(R.drawable.female, "Hina Iqbal", "04901234567"),
-            contactModal(R.drawable.female, "Iram Javed", "04911234567"),
-            contactModal(R.drawable.employee, "Junaid Ahmed", "04921234567"),
-            contactModal(R.drawable.employee, "Kamran Raza", "04931234567"),
-            contactModal(R.drawable.female, "Laila Malik", "04941234567"),
-            contactModal(R.drawable.female, "Maira Javed", "04951234567"),
-            contactModal(R.drawable.employee, "Naveed Malik", "04961234567"),
-            contactModal(R.drawable.employee, "Omer Raza", "04971234567"),
-            contactModal(R.drawable.female, "Pinky Fatima", "04981234567"),
-            contactModal(R.drawable.female, "Quratulain Raza", "04991234567"),
-            contactModal(R.drawable.employee, "Rizwan Khan", "05001234567"),
-            contactModal(R.drawable.employee, "Saqib Ali", "05011234567"),
-            contactModal(R.drawable.female, "Tariqa Khan", "05021234567"),
-            contactModal(R.drawable.female, "Uzma Bibi", "05031234567"),
-            contactModal(R.drawable.employee, "Vijay Raza", "05041234567"),
-            contactModal(R.drawable.employee, "Wasiq Javed", "05051234567"),
-            contactModal(R.drawable.female, "Ximena Tariq", "05061234567"),
-            contactModal(R.drawable.female, "Yasmin Bibi", "05071234567"),
-            contactModal(R.drawable.employee, "Zain Ali", "05081234567"),
-            contactModal(R.drawable.employee, "Adil Ahmed", "05091234567"),
-            contactModal(R.drawable.female, "Bisma Bibi", "05101234567"),
-            contactModal(R.drawable.female, "Cynthia Malik", "05111234567"),
-            contactModal(R.drawable.employee, "Danish Ali", "05121234567"),
-            contactModal(R.drawable.employee, "Ehsan Khan", "05131234567"),
-            contactModal(R.drawable.female, "Farah Bibi", "05141234567"),
-            contactModal(R.drawable.female, "Gulnaz Ali", "05151234567"),
-            contactModal(R.drawable.employee, "Hamza Ahmed", "05161234567"),
-            contactModal(R.drawable.employee, "Iftikhar Ahmed", "05171234567"),
-            contactModal(R.drawable.female, "Javeria Khan", "05181234567"),
-            contactModal(R.drawable.female, "Kainat Fatima", "05191234567"),
-            contactModal(R.drawable.employee, "Liaquat Ali", "05201234567"),
-            contactModal(R.drawable.employee, "Murtaza Ali", "05211234567"),
-            contactModal(R.drawable.female, "Nadia Raza", "05221234567"),
-            contactModal(R.drawable.female, "Omaira Javed", "05231234567"),
-            contactModal(R.drawable.employee, "Pervaiz Iqbal", "05241234567"),
-            contactModal(R.drawable.employee, "Qasim Malik", "05251234567"),
-            contactModal(R.drawable.female, "Rabia Malik", "05261234567"),
-            contactModal(R.drawable.female, "Sana Khan", "05271234567"),
-            contactModal(R.drawable.employee, "Tariq Malik", "05281234567"),
-            contactModal(R.drawable.employee, "Umair Ali", "05291234567"),
-            contactModal(R.drawable.female, "Veena Javed", "05301234567"),
-            contactModal(R.drawable.female, "Warda Javed", "05311234567"),
-            contactModal(R.drawable.employee, "Xander Malik", "05321234567"),
-            contactModal(R.drawable.employee, "Yousaf Iqbal", "05331234567"),
-            contactModal(R.drawable.female, "Zeenat Tariq", "05341234567"),
-            contactModal(R.drawable.female, "Aisha Malik", "05351234567"),
-            contactModal(R.drawable.employee, "Bilal Ahmed", "05361234567"),
-            contactModal(R.drawable.employee, "Chaudhry Ahmed", "05371234567"),
-            contactModal(R.drawable.female, "Dania Ali", "05381234567"),
-            contactModal(R.drawable.female, "Eman Khan", "05391234567"),
-            contactModal(R.drawable.employee, "Faisal Ali", "05401234567"),
-            contactModal(R.drawable.employee, "Ghulam Shah", "05411234567"),
-            contactModal(R.drawable.female, "Hina Javed", "05421234567"),
-            contactModal(R.drawable.female, "Iram Tariq", "05431234567"),
-            contactModal(R.drawable.employee, "Junaid Raza", "05441234567"),
-            contactModal(R.drawable.employee, "Kamran Malik", "05451234567"),
-            contactModal(R.drawable.employee, "Luqman Iqbal", "05461234567"),
-            contactModal(R.drawable.female, "Maira Tariq", "05471234567"),
-            contactModal(R.drawable.female, "Nazia Bibi", "05481234567"),
-            contactModal(R.drawable.employee, "Omar Malik", "05491234567"),
-            contactModal(R.drawable.female, "Parveen Ali", "05501234567"),
-            contactModal(R.drawable.employee, "Qasim Malik", "05511234567"),
-            contactModal(R.drawable.female, "Rabia Bibi", "05521234567"),
-            contactModal(R.drawable.female, "Sana Javed", "05531234567"),
-            contactModal(R.drawable.employee, "Tariq Khan", "05541234567"),
-            contactModal(R.drawable.employee, "Umair Javed", "05551234567"),
-            contactModal(R.drawable.female, "Veena Raza", "05561234567"),
-            contactModal(R.drawable.female, "Warda Malik", "05571234567"),
-            contactModal(R.drawable.employee, "Xander Tariq", "05581234567"),
-            contactModal(R.drawable.employee, "Yousaf Malik", "05591234567"),
-            contactModal(R.drawable.female, "Zeenat Malik", "05601234567"),
-            contactModal(R.drawable.female, "Aisha Fatima", "05611234567"),
-            contactModal(R.drawable.employee, "Bilal Ahmed", "05621234567"),
-            contactModal(R.drawable.employee, "Chaudhry Raza", "05631234567"),
-            contactModal(R.drawable.female, "Dania Iqbal", "05641234567"),
-            contactModal(R.drawable.female, "Eman Shah", "05651234567"),
-            contactModal(R.drawable.employee, "Faisal Raza", "05661234567"),
-            contactModal(R.drawable.employee, "Ghulam Tariq", "05671234567"),
-            contactModal(R.drawable.female, "Hina Malik", "05681234567"),
-            contactModal(R.drawable.female, "Iram Raza", "05691234567"),
-            contactModal(R.drawable.employee, "Junaid Ali", "05701234567"),
-            contactModal(R.drawable.employee, "Kamran Shah", "05711234567"),
-            contactModal(R.drawable.employee, "Luqman Khan", "05721234567"),
-            contactModal(R.drawable.female, "Maira Malik", "05731234567"),
-            contactModal(R.drawable.female, "Nazia Iqbal", "05741234567"),
-            contactModal(R.drawable.employee, "Omar Tariq", "05751234567"),
-            contactModal(R.drawable.female, "Parveen Khan", "05761234567"),
-            contactModal(R.drawable.employee, "Qasim Shah", "05771234567"),
-            contactModal(R.drawable.female, "Rabia Malik", "05781234567"),
-            contactModal(R.drawable.female, "Sana Malik", "05791234567"),
-            contactModal(R.drawable.employee, "Tariq Iqbal", "05801234567"),
-            contactModal(R.drawable.employee, "Umair Shah", "05811234567"),
-            contactModal(R.drawable.female, "Veena Malik", "05821234567"),
-            contactModal(R.drawable.female, "Warda Bibi", "05831234567"),
-            contactModal(R.drawable.employee, "Xander Iqbal", "05841234567"),
-            contactModal(R.drawable.employee, "Yousaf Tariq", "05851234567"),
-            contactModal(R.drawable.female, "Zeenat Iqbal", "05861234567"),
-            contactModal(R.drawable.female, "Aisha Javed", "05871234567"),
-            contactModal(R.drawable.employee, "Bilal Shah", "05881234567"),
-            contactModal(R.drawable.employee, "Chaudhry Khan", "05891234567"),
-            contactModal(R.drawable.female, "Dania Raza", "05901234567"),
-            contactModal(R.drawable.female, "Eman Tariq", "05911234567"),
-            contactModal(R.drawable.employee, "Faisal Malik", "05921234567"),
-            contactModal(R.drawable.employee, "Ghulam Ahmed", "05931234567"),
-            contactModal(R.drawable.female, "Hina Bibi", "05941234567"),
-            contactModal(R.drawable.female, "Iram Malik", "05951234567"),
-            contactModal(R.drawable.employee, "Junaid Malik", "05961234567"),
-            contactModal(R.drawable.employee, "Kamran Tariq", "05971234567"),
-            contactModal(R.drawable.female, "Laila Tariq", "05981234567"),
-            contactModal(R.drawable.female, "Maira Iqbal", "05991234567"),
-            contactModal(R.drawable.employee, "Naveed Ali", "06001234567"),
-            contactModal(R.drawable.employee, "Omer Malik", "06011234567"),
-            contactModal(R.drawable.female, "Pinky Khan", "06021234567"),
-            contactModal(R.drawable.female, "Quratulain Malik", "06031234567"),
-            contactModal(R.drawable.employee, "Rizwan Ahmed", "06041234567"),
-            contactModal(R.drawable.employee, "Saqib Malik", "06051234567"),
-            contactModal(R.drawable.female, "Tariqa Bibi", "06061234567"),
-            contactModal(R.drawable.female, "Uzma Tariq", "06071234567"),
-            contactModal(R.drawable.employee, "Vijay Malik", "06081234567"),
-            contactModal(R.drawable.employee, "Wasiq Malik", "06091234567"),
-            contactModal(R.drawable.female, "Ximena Malik", "06101234567"),
-            contactModal(R.drawable.female, "Yasmin Tariq", "06111234567"),
-            contactModal(R.drawable.employee, "Zain Tariq", "06121234567"),
-            contactModal(R.drawable.employee, "Adil Tariq", "06131234567"),
-            contactModal(R.drawable.female, "Bisma Malik", "06141234567"),
-            contactModal(R.drawable.female, "Cynthia Khan", "06151234567"),
-            contactModal(R.drawable.employee, "Danish Malik", "06161234567"),
-            contactModal(R.drawable.employee, "Ehsan Tariq", "06171234567"),
-            contactModal(R.drawable.female, "Farah Tariq", "06181234567"),
-            contactModal(R.drawable.female, "Gulnaz Tariq", "06191234567"),
-            contactModal(R.drawable.employee, "Hamza Malik", "06201234567"),
-            contactModal(R.drawable.employee, "Iftikhar Tariq", "06211234567"),
-            contactModal(R.drawable.female, "Javeria Tariq", "06221234567"),
-            contactModal(R.drawable.female, "Kainat Tariq", "06231234567"),
-            contactModal(R.drawable.employee, "Liaquat Tariq", "06241234567"),
-            contactModal(R.drawable.employee, "Murtaza Tariq", "06251234567"),
-            contactModal(R.drawable.female, "Nadia Tariq", "06261234567"),
-            contactModal(R.drawable.female, "Omaira Tariq", "06271234567"),
-            contactModal(R.drawable.employee, "Pervaiz Tariq", "06281234567"),
-            contactModal(R.drawable.employee, "Qasim Tariq", "06291234567"),
-            contactModal(R.drawable.female, "Rabia Tariq", "06301234567"),
-            contactModal(R.drawable.female, "Sana Tariq", "06311234567"),
-            contactModal(R.drawable.employee, "Tariq Tariq", "06321234567"),
-            contactModal(R.drawable.employee, "Umair Tariq", "06331234567"),
-            contactModal(R.drawable.female, "Veena Tariq", "06341234567"),
-            contactModal(R.drawable.female, "Warda Tariq", "06351234567"),
-            contactModal(R.drawable.employee, "Xander Tariq", "06361234567"),
-            contactModal(R.drawable.employee, "Yousaf Tariq", "06371234567"),
-            contactModal(R.drawable.female, "Zeenat Tariq", "06381234567"),
-            contactModal(R.drawable.female, "Aisha Tariq", "06391234567")
+            contactModal(R.drawable.female, "Warda Nisar", "03491234567")
         )
-
-
         adapter = RecyclerContactAdapter(contactList)
         recyclerView.adapter = adapter
 
+
+        fabAction.setOnClickListener {
+            val dialog = Dialog(this, R.style.CustomDialog)
+            dialog.setContentView(R.layout.add_update_layout)
+
+            val etName = dialog.findViewById<EditText>(R.id.etName)
+            val etNumber = dialog.findViewById<EditText>(R.id.etNumber)
+            val etAction = dialog.findViewById<Button>(R.id.btnAction)
+
+            etAction.setOnClickListener {
+                val name = etName.text.toString().trim()
+                val number = etNumber.text.toString().trim()
+
+                if (name.isEmpty() && number.isEmpty()) {
+                    Toast.makeText(this, "Name and Number are Empty", Toast.LENGTH_LONG).show()
+                } else if (name.isEmpty()) {
+                    Toast.makeText(this, "Name is Empty", Toast.LENGTH_LONG).show()
+                } else if (number.isEmpty()) {
+                    Toast.makeText(this, "Number is Empty", Toast.LENGTH_LONG).show()
+                } else {
+                    contactList.add(contactModal(R.drawable.user, name, number))
+                    adapter.notifyItemInserted(contactList.size - 1)
+                    recyclerView.scrollToPosition(contactList.size - 1)
+                    dialog.dismiss()
+                }
+            }
+
+            dialog.show()
+        }
     }
 
 }
